@@ -110,11 +110,97 @@
             font-size: 0.8rem;
         }
 
+        .btn-complete {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .btn-complete:hover {
+            background: #059669;
+        }
+
         /* Container */
         .container {
             max-width: 1400px;
             margin: 0 auto;
             padding: 1rem;
+        }
+
+        /* Progress Section */
+        .progress-section {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--card-shadow);
+        }
+
+        .progress-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .progress-bars {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .progress-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .progress-label {
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--text-dark);
+        }
+
+        .progress-stats {
+            font-size: 0.875rem;
+            color: var(--text-light);
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 2rem;
+            background: #e5e7eb;
+            border-radius: 1rem;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #10b981, #059669);
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        .progress-bar-ashram {
+            background: linear-gradient(90deg, #3b82f6, #2563eb);
+        }
+
+        .progress-bar-temple {
+            background: linear-gradient(90deg, #f59e0b, #d97706);
+        }
+
+        .progress-bar-other {
+            background: linear-gradient(90deg, #8b5cf6, #7c3aed);
         }
 
         /* Filters */
@@ -152,6 +238,16 @@
             font-size: 0.875rem;
         }
 
+        .filter-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .filter-toggle input[type="checkbox"] {
+            width: auto;
+        }
+
         /* Area Sections */
         .area-section {
             background: white;
@@ -176,6 +272,11 @@
             font-size: 1.25rem;
             font-weight: 600;
             color: var(--primary-color);
+        }
+
+        .area-controls {
+            display: flex;
+            gap: 0.5rem;
         }
 
         .task-count {
@@ -205,6 +306,11 @@
             transform: translateY(-2px);
         }
 
+        .task-card.completed {
+            opacity: 0.6;
+            background: #f0fdf4;
+        }
+
         .task-header {
             display: flex;
             justify-content: space-between;
@@ -219,9 +325,15 @@
             flex: 1;
         }
 
+        .task-title.completed {
+            text-decoration: line-through;
+            color: var(--text-light);
+        }
+
         .task-actions {
             display: flex;
             gap: 0.5rem;
+            flex-wrap: wrap;
         }
 
         .task-status {
@@ -411,25 +523,6 @@
             color: var(--text-light);
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 1.25rem;
-            }
-
-            .area-title {
-                font-size: 1.125rem;
-            }
-
-            .modal-content {
-                padding: 1.5rem;
-            }
-
-            .filter-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
         /* Loading */
         .loading {
             text-align: center;
@@ -450,6 +543,83 @@
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
+
+        /* Toast Notifications */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            display: none;
+            align-items: center;
+            gap: 0.75rem;
+            z-index: 2000;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        .toast.show {
+            display: flex;
+        }
+
+        .toast.success {
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .toast.error {
+            border-left: 4px solid var(--danger-color);
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.25rem;
+            }
+
+            .area-title {
+                font-size: 1.125rem;
+            }
+
+            .modal-content {
+                padding: 1.5rem;
+            }
+
+            .filter-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .toast {
+                bottom: 1rem;
+                right: 1rem;
+                left: 1rem;
+            }
+
+            .task-actions {
+                width: 100%;
+                justify-content: flex-start;
+            }
+
+            .progress-bar-container {
+                height: 1.5rem;
+            }
+
+            .progress-bar-fill {
+                font-size: 0.75rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -460,7 +630,6 @@
             <div class="header-controls">
                 <span class="access-badge" id="accessBadge">Guest Mode</span>
                 <button class="btn btn-primary" id="toggleModeBtn">Switch to Admin</button>
-                <button class="btn btn-success" id="syncBtn" style="display: none;">💾 Sync to GitHub</button>
                 <button class="btn btn-primary" id="addTaskBtn" style="display: none;">+ Add Task</button>
             </div>
         </div>
@@ -468,6 +637,12 @@
 
     <!-- Main Container -->
     <div class="container">
+        <!-- Progress Bars Section -->
+        <div class="progress-section">
+            <h2 class="progress-title">📊 Overall Progress by Area</h2>
+            <div class="progress-bars" id="progressBars"></div>
+        </div>
+
         <!-- Stats Bar -->
         <div class="stats-bar" id="statsBar">
             <div class="stat-card">
@@ -476,7 +651,7 @@
             </div>
             <div class="stat-card">
                 <div class="stat-value" id="pendingTasks">0</div>
-                <div class="stat-label">Pending</div>
+                <div class="stat-label">Active</div>
             </div>
             <div class="stat-card">
                 <div class="stat-value" id="completedTasks">0</div>
@@ -507,17 +682,14 @@
                     </select>
                 </div>
                 <div class="filter-group">
-                    <label for="filterStatus">Filter by Status</label>
-                    <select id="filterStatus">
-                        <option value="">All Statuses</option>
-                        <option value="completed">Completed</option>
-                        <option value="pending">Pending</option>
-                        <option value="in_progress">In Progress</option>
-                    </select>
-                </div>
-                <div class="filter-group">
                     <label for="filterDate">Filter by Date</label>
                     <input type="date" id="filterDate">
+                </div>
+                <div class="filter-group">
+                    <label class="filter-toggle">
+                        <input type="checkbox" id="showCompleted">
+                        Show Completed Tasks
+                    </label>
                 </div>
             </div>
         </div>
@@ -541,6 +713,18 @@
             <form id="taskForm">
                 <input type="hidden" id="taskId">
                 <input type="hidden" id="taskArea">
+
+                <div class="form-group">
+                    <label for="taskAreaSelect">Area *</label>
+                    <select id="taskAreaSelect" required>
+                        <option value="PRASADAM HALL">PRASADAM HALL</option>
+                        <option value="ASHRAM / BRAHMACHARI AREA">ASHRAM / BRAHMACHARI AREA</option>
+                        <option value="STP & PUBLIC TOILET">STP & PUBLIC TOILET</option>
+                        <option value="ROAD (PAVER AREA)">ROAD (PAVER AREA)</option>
+                        <option value="TEMPLE AREA">TEMPLE AREA</option>
+                        <option value="STRUCTURAL / GRC WORK">STRUCTURAL / GRC WORK</option>
+                    </select>
+                </div>
 
                 <div class="form-group">
                     <label for="taskTitle">Task Title *</label>
@@ -579,11 +763,15 @@
         </div>
     </div>
 
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span id="toastMessage"></span>
+    </div>
+
     <script>
         // Application State
         let tasksData = {};
         let isAdminMode = false;
-        let hasUnsavedChanges = false;
 
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
@@ -595,63 +783,70 @@
         // Event Listeners
         function setupEventListeners() {
             document.getElementById('toggleModeBtn').addEventListener('click', toggleMode);
-            document.getElementById('syncBtn').addEventListener('click', syncToGitHub);
             document.getElementById('addTaskBtn').addEventListener('click', () => openModal('add'));
             document.getElementById('taskForm').addEventListener('submit', saveTask);
 
-            // Filter listeners
             document.getElementById('filterArea').addEventListener('change', renderDashboard);
             document.getElementById('filterPriority').addEventListener('change', renderDashboard);
-            document.getElementById('filterStatus').addEventListener('change', renderDashboard);
             document.getElementById('filterDate').addEventListener('change', renderDashboard);
+            document.getElementById('showCompleted').addEventListener('change', renderDashboard);
         }
 
-        // Load tasks from localStorage or use initial data
+        // Load tasks
         function loadTasksFromLocalStorage() {
             const stored = localStorage.getItem('constructionTasks');
             if (stored) {
                 tasksData = JSON.parse(stored);
             } else {
-                // Initial data will be loaded from GitHub or default
                 tasksData = {"PRASADAM HALL": [{"id": "ph_1", "task": "Finalize ceiling design", "status": "MATERIAL & DESIGN IS STILL TO BE FINALIZED", "deadline": "2025-11-30", "priority": "high", "notes": ""}, {"id": "ph_2", "task": "Choose floor and wall tiles with Achintya Krishna", "status": "PENDING - market visit today", "deadline": "2025-11-21", "priority": "high", "notes": ""}, {"id": "ph_3", "task": "Place orders for tiles, cables, trays, materials", "status": "CABLE TRAY IN STOCK WORK WILL BE FINISHED ON 22/11/25", "deadline": "2025-11-22", "priority": "medium", "notes": "Once selections are approved"}, {"id": "ph_4", "task": "Continue waterproofing on all slabs", "status": "First floor 1st layer water proofing and xps completed. RCC in progress. 2nd floor water proofing and xps completed. Reinforcement binding in progress", "deadline": "2025-11-25", "priority": "high", "notes": "Upon material delivery"}, {"id": "ph_5", "task": "Continue electrical installation according to final drawings", "status": "IN PROGRESS", "deadline": "2025-11-28", "priority": "high", "notes": "Deadline for yashveer"}, {"id": "ph_6", "task": "Confirm exterior wall finishing concept", "status": "NO DETAILS - PENDING", "deadline": "2025-11-30", "priority": "medium", "notes": ""}, {"id": "ph_7", "task": "Monitor full window installation progress", "status": "1ST FLOOR COMPLETED. 2ND FLOOR DELIVERY BY 30/11/25", "deadline": "2025-11-30", "priority": "medium", "notes": ""}, {"id": "ph_8", "task": "Prepare task list and milestone structure for coordination", "status": "NEED DETAILS", "deadline": "2025-11-25", "priority": "low", "notes": ""}], "ASHRAM / BRAHMACHARI AREA": [{"id": "ab_1", "task": "One large ashram window installation", "status": "COMPLETED", "deadline": "2025-11-20", "priority": "medium", "notes": "Verify completion"}], "STP & PUBLIC TOILET": [{"id": "st_1", "task": "Monitor public toilet functioning", "status": "ALL CLEAR - functioning properly", "deadline": "2025-12-01", "priority": "low", "notes": "Newly completed"}, {"id": "st_2", "task": "Verify no clogging or drainage issues", "status": "ALL CLEAR", "deadline": "2025-12-01", "priority": "low", "notes": "After initial usage"}], "ROAD (PAVER AREA)": [{"id": "pa_1", "task": "Reassess expectations for leveling", "status": "DONE", "deadline": "2025-11-20", "priority": "medium", "notes": "Due to sand-based paver installation"}, {"id": "pa_2", "task": "Agree with Achintya Krishna on acceptable tolerance levels", "status": "DONE", "deadline": "2025-11-20", "priority": "medium", "notes": ""}, {"id": "pa_3", "task": "Communicate practical limitations to vendor", "status": "WORK IN PROGRESS", "deadline": "2025-11-22", "priority": "medium", "notes": "To avoid unproductive rework"}], "TEMPLE AREA": [{"id": "ta_1", "task": "Define new tasks and clarify drawings", "status": "NO SPECIFIC TASKS - PENDING CLARIFICATION", "deadline": "2025-11-30", "priority": "low", "notes": "No specific tasks defined during meeting"}], "STRUCTURAL / GRC WORK": [{"id": "gr_1", "task": "Engage structural engineer for GRC metal design", "status": "PLEASE ADVISE ON USING OLD OR FIND NEW", "deadline": "2025-11-25", "priority": "high", "notes": ""}, {"id": "gr_2", "task": "Decide on engineer - previous or new one", "status": "PENDING DECISION", "deadline": "2025-11-23", "priority": "high", "notes": ""}, {"id": "gr_3", "task": "Assign coordination role between engineer and welding team", "status": "PENDING", "deadline": "2025-11-26", "priority": "medium", "notes": ""}]};
                 saveTasksToLocalStorage();
             }
         }
 
-        // Save tasks to localStorage
+        // Save tasks
         function saveTasksToLocalStorage() {
             localStorage.setItem('constructionTasks', JSON.stringify(tasksData));
-            hasUnsavedChanges = true;
         }
 
-        // Toggle between Admin and Guest mode
+        // Toggle mode
         function toggleMode() {
             isAdminMode = !isAdminMode;
             const badge = document.getElementById('accessBadge');
             const toggleBtn = document.getElementById('toggleModeBtn');
-            const syncBtn = document.getElementById('syncBtn');
             const addTaskBtn = document.getElementById('addTaskBtn');
 
             if (isAdminMode) {
                 badge.textContent = 'Admin Mode';
                 badge.className = 'access-badge access-admin';
                 toggleBtn.textContent = 'Switch to Guest';
-                syncBtn.style.display = 'inline-flex';
                 addTaskBtn.style.display = 'inline-flex';
             } else {
                 badge.textContent = 'Guest Mode';
                 badge.className = 'access-badge access-guest';
                 toggleBtn.textContent = 'Switch to Admin';
-                syncBtn.style.display = 'none';
                 addTaskBtn.style.display = 'none';
             }
 
             renderDashboard();
         }
 
+        // Show toast
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+
+            toast.className = `toast ${type} show`;
+            toastMessage.textContent = message;
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
         // Render Dashboard
         function renderDashboard() {
             updateStats();
+            updateProgressBars();
             populateFilters();
             renderTasks();
         }
@@ -667,7 +862,7 @@
             Object.values(tasksData).forEach(tasks => {
                 tasks.forEach(task => {
                     total++;
-                    if (task.status.toUpperCase().includes('COMPLETED') || task.status.toUpperCase().includes('DONE')) {
+                    if (task.completed) {
                         completed++;
                     } else {
                         pending++;
@@ -684,7 +879,61 @@
             document.getElementById('overdueTasks').textContent = overdue;
         }
 
-        // Populate Filter Dropdowns
+        // Update Progress Bars
+        function updateProgressBars() {
+            const progressBars = document.getElementById('progressBars');
+
+            // Group areas
+            const ashramAreas = ['ASHRAM / BRAHMACHARI AREA'];
+            const templeAreas = ['TEMPLE AREA'];
+            const otherAreas = Object.keys(tasksData).filter(area => 
+                !ashramAreas.includes(area) && !templeAreas.includes(area)
+            );
+
+            const groups = [
+                { name: 'Ashram Areas', areas: ashramAreas, class: 'progress-bar-ashram' },
+                { name: 'Temple Areas', areas: templeAreas, class: 'progress-bar-temple' },
+                { name: 'Other Areas', areas: otherAreas, class: 'progress-bar-other' }
+            ];
+
+            let html = '';
+
+            groups.forEach(group => {
+                let totalTasks = 0;
+                let completedTasks = 0;
+
+                group.areas.forEach(area => {
+                    if (tasksData[area]) {
+                        tasksData[area].forEach(task => {
+                            totalTasks++;
+                            if (task.completed) {
+                                completedTasks++;
+                            }
+                        });
+                    }
+                });
+
+                const percentage = totalTasks > 0 ? Math.round((completedTasks / totalTasks) * 100) : 0;
+
+                html += `
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span class="progress-label">${group.name}</span>
+                            <span class="progress-stats">${completedTasks} / ${totalTasks} completed</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar-fill ${group.class}" style="width: ${percentage}%">
+                                ${percentage}%
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            progressBars.innerHTML = html;
+        }
+
+        // Populate Filters
         function populateFilters() {
             const areaSelect = document.getElementById('filterArea');
             const currentValue = areaSelect.value;
@@ -705,8 +954,8 @@
             const container = document.getElementById('tasksContainer');
             const filterArea = document.getElementById('filterArea').value;
             const filterPriority = document.getElementById('filterPriority').value;
-            const filterStatus = document.getElementById('filterStatus').value;
             const filterDate = document.getElementById('filterDate').value;
+            const showCompleted = document.getElementById('showCompleted').checked;
 
             let html = '';
             let hasVisibleTasks = false;
@@ -715,13 +964,8 @@
                 if (filterArea && filterArea !== area) return;
 
                 const filteredTasks = tasks.filter(task => {
+                    if (!showCompleted && task.completed) return false;
                     if (filterPriority && task.priority !== filterPriority) return false;
-                    if (filterStatus) {
-                        const status = task.status.toLowerCase();
-                        if (filterStatus === 'completed' && !(status.includes('completed') || status.includes('done'))) return false;
-                        if (filterStatus === 'pending' && !(status.includes('pending') || status.includes('need'))) return false;
-                        if (filterStatus === 'in_progress' && !status.includes('progress')) return false;
-                    }
                     if (filterDate && task.deadline !== filterDate) return false;
                     return true;
                 });
@@ -733,7 +977,10 @@
                     <div class="area-section">
                         <div class="area-header">
                             <h2 class="area-title">${area}</h2>
-                            <span class="task-count">${filteredTasks.length} task${filteredTasks.length !== 1 ? 's' : ''}</span>
+                            <div class="area-controls">
+                                <span class="task-count">${filteredTasks.length} task${filteredTasks.length !== 1 ? 's' : ''}</span>
+                                ${isAdminMode ? `<button class="btn btn-sm btn-success" onclick="openModal('add', '${area}')">+ Add</button>` : ''}
+                            </div>
                         </div>
                         <div class="tasks-grid">
                             ${filteredTasks.map(task => renderTaskCard(task, area)).join('')}
@@ -743,29 +990,28 @@
             });
 
             if (!hasVisibleTasks) {
-                html = '<div class="empty-state"><h3>No tasks found</h3><p>Try adjusting your filters</p></div>';
+                html = '<div class="empty-state"><h3>No tasks found</h3><p>Try adjusting your filters or add new tasks</p></div>';
             }
 
             container.innerHTML = html;
         }
 
-        // Render Individual Task Card
+        // Render Task Card
         function renderTaskCard(task, area) {
             const today = new Date().toISOString().split('T')[0];
             let deadlineClass = 'deadline';
             if (task.deadline) {
-                if (task.deadline < today) deadlineClass += ' overdue';
+                if (task.deadline < today && !task.completed) deadlineClass += ' overdue';
                 else if (task.deadline === today) deadlineClass += ' today';
             }
 
-            const isCompleted = task.status.toUpperCase().includes('COMPLETED') || task.status.toUpperCase().includes('DONE');
-
             return `
-                <div class="task-card">
+                <div class="task-card ${task.completed ? 'completed' : ''}" data-task-id="${task.id}">
                     <div class="task-header">
-                        <div class="task-title">${task.task}</div>
+                        <div class="task-title ${task.completed ? 'completed' : ''}">${task.task}</div>
                         ${isAdminMode ? `
                             <div class="task-actions">
+                                ${!task.completed ? `<button class="btn btn-sm btn-complete" onclick="completeTask('${area}', '${task.id}')">✓ Complete</button>` : ''}
                                 <button class="btn btn-sm btn-primary" onclick="editTask('${area}', '${task.id}')">Edit</button>
                                 <button class="btn btn-sm btn-danger" onclick="deleteTask('${area}', '${task.id}')">Delete</button>
                             </div>
@@ -776,6 +1022,7 @@
                     <div class="task-meta">
                         <span class="priority-badge priority-${task.priority}">${task.priority.toUpperCase()}</span>
                         <span class="${deadlineClass}">📅 ${formatDate(task.deadline)}</span>
+                        ${task.completed ? '<span style="color: var(--secondary-color); font-weight: 600;">✓ Completed</span>' : ''}
                     </div>
                 </div>
             `;
@@ -795,6 +1042,19 @@
             return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
         }
 
+        // Complete Task
+        function completeTask(area, taskId) {
+            if (!confirm('Mark this task as completed?')) return;
+
+            const task = tasksData[area].find(t => t.id === taskId);
+            if (task) {
+                task.completed = true;
+                saveTasksToLocalStorage();
+                renderDashboard();
+                showToast('Task marked as completed! ✓', 'success');
+            }
+        }
+
         // Modal Functions
         function openModal(mode, area = null, taskId = null) {
             if (!isAdminMode) return;
@@ -807,13 +1067,14 @@
 
             if (mode === 'add') {
                 title.textContent = 'Add New Task';
-                document.getElementById('taskArea').value = Object.keys(tasksData)[0] || '';
+                document.getElementById('taskAreaSelect').value = area || 'PRASADAM HALL';
             } else if (mode === 'edit' && area && taskId) {
                 title.textContent = 'Edit Task';
                 const task = tasksData[area].find(t => t.id === taskId);
                 if (task) {
                     document.getElementById('taskId').value = taskId;
                     document.getElementById('taskArea').value = area;
+                    document.getElementById('taskAreaSelect').value = area;
                     document.getElementById('taskTitle').value = task.task;
                     document.getElementById('taskStatus').value = task.status;
                     document.getElementById('taskDeadline').value = task.deadline;
@@ -839,6 +1100,7 @@
             tasksData[area] = tasksData[area].filter(t => t.id !== taskId);
             saveTasksToLocalStorage();
             renderDashboard();
+            showToast('Task deleted successfully', 'success');
         }
 
         // Save Task
@@ -846,56 +1108,56 @@
             e.preventDefault();
 
             const taskId = document.getElementById('taskId').value;
-            const area = document.getElementById('taskArea').value;
+            const originalArea = document.getElementById('taskArea').value;
+            const newArea = document.getElementById('taskAreaSelect').value;
+
             const task = {
                 id: taskId || 'task_' + Date.now(),
                 task: document.getElementById('taskTitle').value,
                 status: document.getElementById('taskStatus').value,
                 deadline: document.getElementById('taskDeadline').value,
                 priority: document.getElementById('taskPriority').value,
-                notes: document.getElementById('taskNotes').value
+                notes: document.getElementById('taskNotes').value,
+                completed: false
             };
 
             if (taskId) {
                 // Update existing task
-                const index = tasksData[area].findIndex(t => t.id === taskId);
-                if (index !== -1) {
-                    tasksData[area][index] = task;
+                const existingTask = tasksData[originalArea]?.find(t => t.id === taskId);
+                if (existingTask) {
+                    task.completed = existingTask.completed; // Preserve completed status
+                }
+
+                if (originalArea === newArea) {
+                    const index = tasksData[originalArea].findIndex(t => t.id === taskId);
+                    if (index !== -1) {
+                        tasksData[originalArea][index] = task;
+                    }
+                } else {
+                    // Move to different area
+                    tasksData[originalArea] = tasksData[originalArea].filter(t => t.id !== taskId);
+                    if (!tasksData[newArea]) tasksData[newArea] = [];
+                    tasksData[newArea].push(task);
                 }
             } else {
                 // Add new task
-                if (!tasksData[area]) tasksData[area] = [];
-                tasksData[area].push(task);
+                if (!tasksData[newArea]) tasksData[newArea] = [];
+                tasksData[newArea].push(task);
             }
 
             saveTasksToLocalStorage();
             closeModal();
             renderDashboard();
+            showToast(taskId ? 'Task updated successfully' : 'Task added successfully', 'success');
         }
 
-        // Sync to GitHub (placeholder - will be implemented with GitHub API)
-        function syncToGitHub() {
-            alert('GitHub sync feature requires GitHub integration setup.\n\nYour changes are saved locally and can be exported as JSON.');
-
-            // Export as JSON for now
-            const dataStr = JSON.stringify(tasksData, null, 2);
-            const dataBlob = new Blob([dataStr], {type: 'application/json'});
-            const url = URL.createObjectURL(dataBlob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = 'construction-tasks-' + new Date().toISOString().split('T')[0] + '.json';
-            link.click();
-
-            hasUnsavedChanges = false;
-        }
-
-        // Warn before leaving with unsaved changes
-        window.addEventListener('beforeunload', (e) => {
-            if (hasUnsavedChanges && isAdminMode) {
-                e.preventDefault();
-                e.returnValue = '';
+        // Click outside modal to close
+        window.onclick = function(event) {
+            const modal = document.getElementById('taskModal');
+            if (event.target === modal) {
+                closeModal();
             }
-        });
+        }
     </script>
 </body>
 </html>
