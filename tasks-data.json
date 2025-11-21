@@ -1,0 +1,158 @@
+{
+  "PRASADAM HALL": [
+    {
+      "id": "ph_1",
+      "task": "Finalize ceiling design",
+      "status": "MATERIAL & DESIGN IS STILL TO BE FINALIZED",
+      "deadline": "2025-11-30",
+      "priority": "high",
+      "notes": ""
+    },
+    {
+      "id": "ph_2",
+      "task": "Choose floor and wall tiles with Achintya Krishna",
+      "status": "PENDING - market visit today",
+      "deadline": "2025-11-21",
+      "priority": "high",
+      "notes": ""
+    },
+    {
+      "id": "ph_3",
+      "task": "Place orders for tiles, cables, trays, materials",
+      "status": "CABLE TRAY IN STOCK WORK WILL BE FINISHED ON 22/11/25",
+      "deadline": "2025-11-22",
+      "priority": "medium",
+      "notes": "Once selections are approved"
+    },
+    {
+      "id": "ph_4",
+      "task": "Continue waterproofing on all slabs",
+      "status": "First floor 1st layer water proofing and xps completed. RCC in progress. 2nd floor water proofing and xps completed. Reinforcement binding in progress",
+      "deadline": "2025-11-25",
+      "priority": "high",
+      "notes": "Upon material delivery"
+    },
+    {
+      "id": "ph_5",
+      "task": "Continue electrical installation according to final drawings",
+      "status": "IN PROGRESS",
+      "deadline": "2025-11-28",
+      "priority": "high",
+      "notes": "Deadline for yashveer"
+    },
+    {
+      "id": "ph_6",
+      "task": "Confirm exterior wall finishing concept",
+      "status": "NO DETAILS - PENDING",
+      "deadline": "2025-11-30",
+      "priority": "medium",
+      "notes": ""
+    },
+    {
+      "id": "ph_7",
+      "task": "Monitor full window installation progress",
+      "status": "1ST FLOOR COMPLETED. 2ND FLOOR DELIVERY BY 30/11/25",
+      "deadline": "2025-11-30",
+      "priority": "medium",
+      "notes": ""
+    },
+    {
+      "id": "ph_8",
+      "task": "Prepare task list and milestone structure for coordination",
+      "status": "NEED DETAILS",
+      "deadline": "2025-11-25",
+      "priority": "low",
+      "notes": ""
+    }
+  ],
+  "ASHRAM / BRAHMACHARI AREA": [
+    {
+      "id": "ab_1",
+      "task": "One large ashram window installation",
+      "status": "COMPLETED",
+      "deadline": "2025-11-20",
+      "priority": "medium",
+      "notes": "Verify completion"
+    }
+  ],
+  "STP & PUBLIC TOILET": [
+    {
+      "id": "st_1",
+      "task": "Monitor public toilet functioning",
+      "status": "ALL CLEAR - functioning properly",
+      "deadline": "2025-12-01",
+      "priority": "low",
+      "notes": "Newly completed"
+    },
+    {
+      "id": "st_2",
+      "task": "Verify no clogging or drainage issues",
+      "status": "ALL CLEAR",
+      "deadline": "2025-12-01",
+      "priority": "low",
+      "notes": "After initial usage"
+    }
+  ],
+  "ROAD (PAVER AREA)": [
+    {
+      "id": "pa_1",
+      "task": "Reassess expectations for leveling",
+      "status": "DONE",
+      "deadline": "2025-11-20",
+      "priority": "medium",
+      "notes": "Due to sand-based paver installation"
+    },
+    {
+      "id": "pa_2",
+      "task": "Agree with Achintya Krishna on acceptable tolerance levels",
+      "status": "DONE",
+      "deadline": "2025-11-20",
+      "priority": "medium",
+      "notes": ""
+    },
+    {
+      "id": "pa_3",
+      "task": "Communicate practical limitations to vendor",
+      "status": "WORK IN PROGRESS",
+      "deadline": "2025-11-22",
+      "priority": "medium",
+      "notes": "To avoid unproductive rework"
+    }
+  ],
+  "TEMPLE AREA": [
+    {
+      "id": "ta_1",
+      "task": "Define new tasks and clarify drawings",
+      "status": "NO SPECIFIC TASKS - PENDING CLARIFICATION",
+      "deadline": "2025-11-30",
+      "priority": "low",
+      "notes": "No specific tasks defined during meeting"
+    }
+  ],
+  "STRUCTURAL / GRC WORK": [
+    {
+      "id": "gr_1",
+      "task": "Engage structural engineer for GRC metal design",
+      "status": "PLEASE ADVISE ON USING OLD OR FIND NEW",
+      "deadline": "2025-11-25",
+      "priority": "high",
+      "notes": ""
+    },
+    {
+      "id": "gr_2",
+      "task": "Decide on engineer - previous or new one",
+      "status": "PENDING DECISION",
+      "deadline": "2025-11-23",
+      "priority": "high",
+      "notes": ""
+    },
+    {
+      "id": "gr_3",
+      "task": "Assign coordination role between engineer and welding team",
+      "status": "PENDING",
+      "deadline": "2025-11-26",
+      "priority": "medium",
+      "notes": ""
+    }
+  ]
+}
